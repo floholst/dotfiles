@@ -1,3 +1,5 @@
 [user]
 	name = Flo Holst
 	email = florianholst97@gmail.com
+[init]
+	defaultBranch = main
