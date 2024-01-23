@@ -37,7 +37,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
+    xterm-color|*-256color) color_prompt=yes;; # |xterm-kitty
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -57,8 +57,10 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    #PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\033[38;5;202m\]$(__git_ps1 " %s ")\[\033[00m\]\$ '
 else
+    # PS1='[\u@\h \w$(__git_ps1 " (%s)")]\$ '
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
@@ -92,6 +94,8 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias matcli='matlab -nodesktop -nosplash -sd ./'
+alias python='python3' 
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
