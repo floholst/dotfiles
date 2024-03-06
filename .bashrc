@@ -37,9 +37,8 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;; # |xterm-kitty
+    xterm-color|*-256color|xterm-kitty) color_prompt=yes;; 
 esac
-
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
@@ -58,7 +57,7 @@ fi
 
 if [ "$color_prompt" = yes ]; then
     #PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\033[38;5;202m\]$(__git_ps1 " %s ")\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\033[38;5;202m\]$(__git_ps1 " (%s) ")\[\033[00m\]\$ '
 else
     # PS1='[\u@\h \w$(__git_ps1 " (%s)")]\$ '
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
@@ -68,7 +67,7 @@ unset color_prompt force_color_prompt
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    # PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
     ;;
 *)
     ;;
