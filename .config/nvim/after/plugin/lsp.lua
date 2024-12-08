@@ -9,7 +9,7 @@ end)
 -- here you can setup the language servers 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = {"gopls"},
+  ensure_installed = {"gopls", "lemminx"},
   handlers = {
     lsp_zero.default_setup,
     require'lspconfig'.pylsp.setup{
