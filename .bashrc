@@ -1,4 +1,4 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
+
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
@@ -39,6 +39,7 @@ fi
 case "$TERM" in
     xterm-color|*-256color|xterm-kitty) color_prompt=yes;; 
 esac
+
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
@@ -56,22 +57,13 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    #PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\033[38;5;202m\]$(__git_ps1 " (%s) ")\[\033[00m\]\$ '
+    #PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ ' PROMPT_COMMAND='PS1_CMD1=$(__git_ps1 " (%s)")'; PS1='\u@\H:\w${PS1_CMD1}\$'
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[38;5;202m\]$(__git_ps1 " (%s)")\[\033[00m\]\$ '
 else
     # PS1='[\u@\h \w$(__git_ps1 " (%s)")]\$ '
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1 " (%s)")\$ '
 fi
 unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    # PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -94,7 +86,8 @@ alias la='ls -A'
 alias l='ls -CF'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias matcli='matlab -nodesktop -nosplash -sd ./'
-alias python='python3' 
+alias python='python3'
+alias feh='feh -. -d'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
