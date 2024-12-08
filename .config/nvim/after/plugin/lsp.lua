@@ -1,4 +1,5 @@
 local lsp_zero = require('lsp-zero')
+local util = require('lspconfig.util')
 
 lsp_zero.on_attach(function(client, bufnr)
   -- see :help lsp-zero-keybindings
@@ -9,7 +10,7 @@ end)
 -- here you can setup the language servers 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = {"gopls"},
+  ensure_installed = {"gopls", "lemminx", "pylsp", "lua_ls"},
   handlers = {
     lsp_zero.default_setup,
     require'lspconfig'.pylsp.setup{
@@ -23,6 +24,13 @@ require('mason-lspconfig').setup({
           }
         }
       }
-    }
+    },
+    gopls = function()
+        require("lspconfig").gopls.setup {
+            root_dir = function(fname)
+                return util.root_pattern 'go.work' (fname) or util.root_pattern('go.mod', '.git')(fname)
+              end,
+            }
+          end,
   },
 })
