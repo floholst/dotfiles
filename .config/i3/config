@@ -13,7 +13,7 @@ set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+font pango:Fira Code Nerd Font Mono 8
 
 # From primagen i3/config
 for_window [class="^.*"] border pixel 2
@@ -37,7 +37,6 @@ exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -i ~/Pictures/debian.png -e
 bindsym $mod+Shift+m exec --no-startup-id i3lock -i ~/Pictures/debian.png -e
 
-
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
@@ -48,6 +47,10 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# Brightness adjustment
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight +5 && $refresh_i3status
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -5 && $refresh_i3status
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -162,7 +165,8 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 ## exit i3 (logs you out of your X session)
-#bindsym $mod+Shift+e exec "i3-msg exit"
+# bindsym $mod+Shift+e exec "i3-msg exit"
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 mode "exit?" {
     bindsym Return exec i3-msg exit
@@ -170,7 +174,6 @@ mode "exit?" {
 }
 
 bindsym $mod+Shift+e mode "exit?" 
-
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -204,9 +207,6 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 }
-
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight +5 && $refresh_i3status
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -5 && $refresh_i3status
 
 exec_always --no-startup-id feh --bg-fill ~/Pictures/debian-logo.png
 exec --no-startup-id xrdb -merge ~/.Xresources

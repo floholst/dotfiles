@@ -7,15 +7,24 @@ lsp_zero.on_attach(function(client, bufnr)
   lsp_zero.default_keymaps({buffer = bufnr})
 end)
 
+-- here you can setup the language servers 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = {'pylsp', 'lua_ls'},
+  ensure_installed = {"gopls", "lemminx", "pylsp", "lua_ls"},
   handlers = {
     lsp_zero.default_setup,
-    --lua_ls = function()
-    --    local lua_opts = lsp_zero.nvim_lua_ls()
-    --    require('lspconfig').lua_ls.setup(lua_opts)
-    --end,
+    require'lspconfig'.pylsp.setup{
+      settings = {
+        pylsp = {
+          plugins = {
+            pycodestyle = {
+              ignore = {'W391'},
+              maxLineLength = 100
+            }
+          }
+        }
+      }
+    },
     gopls = function()
         require("lspconfig").gopls.setup {
             root_dir = function(fname)
@@ -25,4 +34,3 @@ require('mason-lspconfig').setup({
           end,
   },
 })
-

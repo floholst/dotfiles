@@ -5,9 +5,13 @@ return {
       local configs = require("nvim-treesitter.configs")
 
       configs.setup({
+          sync_install = false,
+          highlight = { enable = true },
+          indent = { enable = true },
           ensure_installed = {
                 "bash",
                 "c",
+                "cpp",
                 "diff",
                 "dockerfile",
                 "go",
@@ -34,12 +38,10 @@ return {
                 "typescript",
                 "vim",
                 "vimdoc",
+                "xml",
                 "yaml",
                 "zig",
             },
-          sync_install = false,
-          highlight = { enable = true },
-          indent = { enable = true },
         })
     end
  }
