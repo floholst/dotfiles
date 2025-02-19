@@ -1,0 +1,6 @@
+xterm.termName: xterm-256color
+xterm.vt100.faceName: FiraCode Nerd Font Mono
+xterm.vt100.faceSize: 12
+xterm.vt100.foreground: white
+xterm.vt100.background:black
+xterm.vt100.selectToClipboard: true
