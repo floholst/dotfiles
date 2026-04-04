@@ -1,5 +1,5 @@
 if vim.fn.has("gui_running") then
-    vim.o.guifont = "Fira Code:h34"
+    vim.o.guifont = "Fira Code:h12"
 end
 
 vim.opt.nu = true

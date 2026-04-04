@@ -13,7 +13,6 @@ general {
 }
 
 order += "wireless _first_"
-order += "wireless wlp3s0"
 order += "ethernet _first_"
 order += "battery all"
 order += "load"
@@ -22,12 +21,7 @@ order += "disk /"
 order += "tztime local"
 
 wireless _first_ {
-        format_up = "W:%quality"
-        format_down = ""
-}
-
-wireless wlp3s0 {
-        format_up = "%essid"
+        format_up = "W:%quality %essid"
         format_down = ""
 }
 
@@ -38,10 +32,7 @@ ethernet _first_ {
 
 battery all {
         format = "%status %percentage %remaining"
-}
-
-disk "/" {
-        format = "DISK:%avail"
+        last_full_capacity = false
 }
 
 load {

@@ -4,6 +4,9 @@ local actions = require('telescope.actions')
 
 vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
 vim.keymap.set('n', '<leader>pg', builtin.live_grep, {})
+vim.keymap.set('n', 'gd', builtin.lsp_definitions, {})
+vim.keymap.set('n', 'gr', builtin.lsp_references, {})
+vim.keymap.set('n', 'gi', builtin.lsp_implementations, {})
 
 -- Clone the default Telescope configuration
 local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }

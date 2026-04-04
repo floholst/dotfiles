@@ -37,7 +37,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color|*-256color|xterm-kitty) color_prompt=yes;; 
+    alacritty|xterm-color|*-256color|xterm-kitty) color_prompt=yes;; 
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -119,3 +119,5 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+. "$HOME/.local/bin/env"
