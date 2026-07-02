@@ -1,11 +1,19 @@
 -- add oneline plugins
 return {
-    {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
-    {'neovim/nvim-lspconfig'},
-    {'hrsh7th/cmp-nvim-lsp'},
-    {'hrsh7th/nvim-cmp'},
     {'L3MON4D3/LuaSnip'},
-    {'williamboman/mason.nvim'},
-    {'williamboman/mason-lspconfig.nvim'},
+    {'mason-org/mason.nvim'},
+    {"mason-org/mason-lspconfig.nvim",
+        opts = {
+            ensure_installed = {
+                "gopls",
+                "jdtls",
+            },
+        },
+        dependencies = {
+            { "mason-org/mason.nvim", opts = {} },
+            "neovim/nvim-lspconfig",
+        },
+    },
+    {'neovim/nvim-lspconfig'},
     {"mbbill/undotree"},
 }

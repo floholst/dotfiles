@@ -1,1 +1,1 @@
-require("flo")
+require("config.lazy")
