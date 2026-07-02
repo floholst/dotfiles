@@ -1,0 +1,3 @@
+[submodule "/home/flo/.config/nvim"]
+	path = /home/flo/.config/nvim
+	url = git@github.com:floholst/nvim.git
